@@ -1,0 +1,24 @@
+{
+  "HomePage": {
+    "title": "Chào mừng đến với Next.js với quốc tế hóa",
+    "description": "Đây là bản demo của Next.js với next-intl cho quốc tế hóa.",
+    "getStarted": "Bắt đầu",
+    "learnMore": "Tìm hiểu thêm"
+  },
+  "AboutPage": {
+    "hello": "Xin chào {name}!",
+    "title": "Về Chúng Tôi",
+    "description": "Tìm hiểu thêm về công ty và sứ mệnh của chúng tôi.",
+    "content": "Chúng tôi là một công ty chuyên xây dựng các ứng dụng web tuyệt vời với các công nghệ mới nhất."
+  },
+  "Navigation": {
+    "home": "Trang chủ",
+    "about": "Giới thiệu",
+    "contact": "Liên hệ"
+  },
+  "LanguageSwitcher": {
+    "switchLanguage": "Chuyển đổi ngôn ngữ",
+    "english": "English",
+    "vietnamese": "Tiếng Việt"
+  }
+}

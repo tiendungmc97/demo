@@ -1,0 +1,24 @@
+{
+  "HomePage": {
+    "title": "Welcome to Next.js with Internationalization",
+    "description": "This is a demo of Next.js with next-intl for internationalization.",
+    "getStarted": "Get Started",
+    "learnMore": "Learn More"
+  },
+  "AboutPage": {
+    "hello": "Hello {name}!",
+    "title": "About Us",
+    "description": "Learn more about our company and mission.",
+    "content": "We are a company dedicated to building amazing web applications with the latest technologies."
+  },
+  "Navigation": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "LanguageSwitcher": {
+    "switchLanguage": "Switch Language",
+    "english": "English",
+    "vietnamese": "Tiếng Việt"
+  }
+}
