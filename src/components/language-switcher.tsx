@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname, useRouter } from "@/i18n/navigation";
-import { Language } from "@/types/language";
+import { Language } from "@/libs/types/language";
 import { useTranslations, useLocale } from "next-intl";
 
 export function LanguageSwitcher() {

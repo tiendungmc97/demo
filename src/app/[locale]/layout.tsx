@@ -8,8 +8,9 @@ import "@/styles/globals.css"
 import { Metadata } from "next";
 import { getMessages } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
-import { Language } from "@/types/language";
+import { Language } from "@/libs/types/language";
 import { Navigation } from "@/components/navigation";
+import { ReduxProvider } from "@/redux/provider";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -40,15 +41,17 @@ export default async function LocaleLayout({
 
   // Providing all messages to the client
   // side is the easiest way to get started
-  const messages = await getMessages({locale})
+  const messages = await getMessages({locale: locale as Language})
 
   return (
     <html lang={locale}>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <NextIntlClientProvider messages={messages}>
-          <Navigation />
-          <main className="container mx-auto px-4 py-8">{children}</main>
-        </NextIntlClientProvider>
+        <ReduxProvider>
+          <NextIntlClientProvider messages={messages}>
+            <Navigation />
+            <main className="container mx-auto px-4 py-8">{children}</main>
+          </NextIntlClientProvider>
+        </ReduxProvider>
       </body>
     </html>
   )

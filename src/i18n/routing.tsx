@@ -1,4 +1,4 @@
-import { Language } from "@/types/language";
+import { Language } from "@/libs/types/language";
 import { defineRouting } from "next-intl/routing";
 
 export const routing = defineRouting({
