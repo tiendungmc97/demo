@@ -5,7 +5,6 @@ import { useTranslations } from "next-intl"
 
 export default function HomePage() {
   const t = useTranslations("HomePage")
-
   return (
     <div className="space-y-8 bg-gray-400">
       <div className="text-center space-y-4">

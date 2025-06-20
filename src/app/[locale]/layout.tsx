@@ -1,16 +1,17 @@
-import { routing } from "@/i18n/routing"
+import { routing } from "@/i18n/routing";
 
-import { notFound } from "next/navigation"
-import type React from "react"
+import { notFound } from "next/navigation";
+import type React from "react";
 import { Geist, Geist_Mono } from "next/font/google";
 
-import "@/styles/globals.css"
+import "@/styles/globals.css";
 import { Metadata } from "next";
 import { getMessages } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
-import { Language } from "@/libs/types/language";
+import { Language } from "@/shared/types/language";
 import { Navigation } from "@/components/navigation";
 import { ReduxProvider } from "@/redux/provider";
+import { ReactQueryProvider } from "@/services/react-query/provider";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -29,34 +30,38 @@ export default async function LocaleLayout({
   children,
   params,
 }: {
-  children: React.ReactNode
-  params: Promise<{ locale: string }>
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>;
 }) {
-  const { locale } = await params
+  const { locale } = await params;
 
   // Ensure that the incoming `locale` is valid
   if (!routing.locales.includes(locale as Language)) {
-    notFound()
+    notFound();
   }
 
   // Providing all messages to the client
   // side is the easiest way to get started
-  const messages = await getMessages({locale: locale as Language})
+  const messages = await getMessages({ locale: locale as Language });
 
   return (
     <html lang={locale}>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
         <ReduxProvider>
-          <NextIntlClientProvider messages={messages}>
-            <Navigation />
-            <main className="container mx-auto px-4 py-8">{children}</main>
-          </NextIntlClientProvider>
+          <ReactQueryProvider>
+            <NextIntlClientProvider messages={messages}>
+              <Navigation />
+              <main className="container mx-auto px-4 py-8">{children}</main>
+            </NextIntlClientProvider>
+          </ReactQueryProvider>
         </ReduxProvider>
       </body>
     </html>
-  )
+  );
 }
 
 export function generateStaticParams() {
-  return routing.locales.map((locale) => ({ locale }))
+  return routing.locales.map((locale) => ({ locale }));
 }
