@@ -14,7 +14,8 @@
   "Navigation": {
     "home": "Home",
     "about": "About",
-    "contact": "Contact"
+    "contact": "Contact",
+    "theme": "Theme"
   },
   "LanguageSwitcher": {
     "switchLanguage": "Switch Language",

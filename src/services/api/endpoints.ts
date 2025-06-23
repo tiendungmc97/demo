@@ -11,4 +11,4 @@ export const API_ENDPOINTS = {
         DETAIL: (id: number) => `/users/${id}`,
         PROFILE: (id: number) => `/users/${id}/profile`,
     },
-}
+} as const;

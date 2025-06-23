@@ -9,7 +9,6 @@ import { Provider } from "react-redux"
 
 
 export function ReduxProvider({ children }: { children: React.ReactNode }) {
-
   useEffect(() => {
     // Load persisted state on mount
     const persistedState = loadState()

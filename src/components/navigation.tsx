@@ -1,16 +1,18 @@
-"use client"
+"use client";
 
-import { Link } from "@/i18n/navigation"
-import { useTranslations } from "next-intl"
-import { LanguageSwitcher } from "./language-switcher"
+import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
+import { LanguageSwitcher } from "./language-switcher";
+import { ThemeToggle } from "./theme-toggle";
 
 export function Navigation() {
-  const t = useTranslations("Navigation")
+  const t = useTranslations("Navigation");
 
   const navItems = [
     { href: "/", label: t("home") },
     { href: "/about", label: t("about") },
-  ]
+    { href: "/theme", label: t("theme") },
+  ];
 
   return (
     <nav className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -23,19 +25,18 @@ export function Navigation() {
 
             <div className="hidden md:flex items-center space-x-6">
               {navItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                >
+                <Link key={item.href} href={item.href}>
                   {item.label}
                 </Link>
               ))}
             </div>
           </div>
-
-          <LanguageSwitcher />
+          <div className="flex items-center space-x-4">
+            <ThemeToggle />
+            <LanguageSwitcher />
+          </div>
         </div>
       </div>
     </nav>
-  )
+  );
 }

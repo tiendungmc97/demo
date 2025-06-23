@@ -1,6 +1,6 @@
 {
   "HomePage": {
-    "title": "Chào mừng đến với Next.js với quốc tế hóa",
+    "title": "Chào mừng đến với Next.js",
     "description": "Đây là bản demo của Next.js với next-intl cho quốc tế hóa.",
     "getStarted": "Bắt đầu",
     "learnMore": "Tìm hiểu thêm"
@@ -14,7 +14,8 @@
   "Navigation": {
     "home": "Trang chủ",
     "about": "Giới thiệu",
-    "contact": "Liên hệ"
+    "contact": "Liên hệ",
+    "theme": "Chủ đề"
   },
   "LanguageSwitcher": {
     "switchLanguage": "Chuyển đổi ngôn ngữ",

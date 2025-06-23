@@ -1,17 +1,22 @@
 import { routing } from "@/i18n/routing";
 
+import { Geist, Geist_Mono } from "next/font/google";
 import { notFound } from "next/navigation";
 import type React from "react";
-import { Geist, Geist_Mono } from "next/font/google";
 
-import "@/styles/globals.css";
-import { Metadata } from "next";
-import { getMessages } from "next-intl/server";
-import { NextIntlClientProvider } from "next-intl";
-import { Language } from "@/shared/types/language";
 import { Navigation } from "@/components/navigation";
 import { ReduxProvider } from "@/redux/provider";
 import { ReactQueryProvider } from "@/services/react-query/provider";
+import { Language } from "@/libs/types/language";
+import "@/styles/globals.css";
+import { ThemeProviders } from "@/theme/provider";
+import { Metadata } from "next";
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages } from "next-intl/server";
+import { cookies } from "next/headers";
+import { Theme } from "@/theme/types";
+import { SessionStorageKeys } from "@/libs/constants/keys";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -44,16 +49,21 @@ export default async function LocaleLayout({
   // side is the easiest way to get started
   const messages = await getMessages({ locale: locale as Language });
 
+  const cookieStore = await cookies()
+  const theme = cookieStore.get(SessionStorageKeys.THEME)?.value as Theme || Theme.LIGHT;
+
   return (
-    <html lang={locale}>
+    <html lang={locale} className={theme} style={{colorScheme: theme}} suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ReduxProvider>
           <ReactQueryProvider>
             <NextIntlClientProvider messages={messages}>
-              <Navigation />
-              <main className="container mx-auto px-4 py-8">{children}</main>
+              <ThemeProviders theme={theme}>
+                <Navigation />
+                <main className="container mx-auto px-4 py-8">{children}</main>
+              </ThemeProviders>
             </NextIntlClientProvider>
           </ReactQueryProvider>
         </ReduxProvider>
