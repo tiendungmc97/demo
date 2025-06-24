@@ -29,7 +29,7 @@ export default function AboutPage() {
   }
   const  {data} = useUserProfile(1);
   return (
-    <LoadingOverlay isLoading={false}>
+    <LoadingOverlay isLoading={true} message="Loading...">
       <div className="space-y-8">
         <div className="text-center space-y-4">
           <button onClick={saveUser}>Save User</button>
