@@ -1,8 +1,7 @@
 import { Controller, FieldValues } from "react-hook-form";
 import { Switch, Form, FormItemProps, SwitchProps } from "antd";
 
-interface ISwitchFieldProps<TFormValues extends FieldValues>
-  extends SwitchProps {
+interface ISwitchFieldProps<TFormValues extends FieldValues> extends SwitchProps {
   name: keyof TFormValues;
   control: any;
   label: string;

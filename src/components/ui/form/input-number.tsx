@@ -2,8 +2,7 @@ import { Form, FormItemProps, InputNumber, InputNumberProps } from "antd";
 import { ReactNode } from "react";
 import { Control, Controller, FieldValues, Path } from "react-hook-form";
 
-interface IInputNumberFieldProps<TFormValues extends FieldValues>
-  extends Omit<InputNumberProps, "name"> {
+interface IInputNumberFieldProps<TFormValues extends FieldValues> extends Omit<InputNumberProps, "name"> {
   control: Control<TFormValues>;
   name: Path<TFormValues>;
   label: ReactNode;

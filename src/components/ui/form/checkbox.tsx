@@ -1,8 +1,7 @@
 import { Checkbox, CheckboxProps, Form, FormItemProps } from "antd";
 import { Control, Controller, FieldValues, Path } from "react-hook-form";
 
-interface ICheckboxFieldProps<TFormValues extends FieldValues>
-  extends Omit<CheckboxProps, "name"> {
+interface ICheckboxFieldProps<TFormValues extends FieldValues> extends Omit<CheckboxProps, "name"> {
   name: Path<TFormValues>;
   control: Control<TFormValues>;
   label: string;

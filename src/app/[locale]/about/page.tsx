@@ -26,22 +26,31 @@ export default function AboutPage() {
       email: "",
     };
     dispatch(logout());
-  }
-  const  {data} = useUserProfile(1);
+  };
+  const { data } = useUserProfile(1);
   return (
-    <LoadingOverlay isLoading={true} message="Loading...">
+    <LoadingOverlay
+      isLoading={true}
+      message="Loading..."
+    >
       <div className="space-y-8">
-        <div className="text-center space-y-4">
+        <div className="space-y-4 text-center">
           <button onClick={saveUser}>Save User</button>
           <button onClick={logoutUser}>logout</button>
-          <h1 className="text-4xl font-bold tracking-tight">{t("title")}</h1>
+          <h1 className="bg-red mb-2 rounded-2xl border-2 text-4xl font-bold tracking-tight text-gray-500">
+            {t("title")}
+          </h1>
           <p>{t("hello", { name: user?.currentUser?.name ?? "" })}</p>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            {t("description")}
-          </p>
+          <p className="text-muted-foreground mx-auto max-w-2xl text-xl">{t("description")}</p>
         </div>
         <Button color="primary">22323</Button>
-        <Button color="blue" variant="link">2323</Button>
+        <Button
+          color="blue"
+          variant="link"
+        >
+          2323
+        </Button>
+        <Button color="red">2323</Button>
       </div>
     </LoadingOverlay>
   );

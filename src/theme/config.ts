@@ -56,8 +56,7 @@ export const themeConfigs = (isDark: boolean) => ({
     colorBorderSecondary: isDark ? "#334155" : "#f1f5f9",
 
     // Typography
-    fontFamily:
-      "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+    fontFamily: "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
     fontSize: 14,
     fontSizeHeading1: 32,
     fontSizeHeading2: 24,
@@ -79,12 +78,8 @@ export const themeConfigs = (isDark: boolean) => ({
     borderRadiusLG: designTokens.borderRadius.lg,
 
     // Shadows
-    boxShadow: isDark
-      ? "0 1px 3px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3)"
-      : designTokens.shadows.md,
-    boxShadowSecondary: isDark
-      ? "0 1px 2px rgba(0, 0, 0, 0.3)"
-      : designTokens.shadows.sm,
+    boxShadow: isDark ? "0 1px 3px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3)" : designTokens.shadows.md,
+    boxShadowSecondary: isDark ? "0 1px 2px rgba(0, 0, 0, 0.3)" : designTokens.shadows.sm,
   },
   components: {
     // Button theming
@@ -115,9 +110,7 @@ export const themeConfigs = (isDark: boolean) => ({
       colorBorderDisabled: isDark ? "#334155" : "#f1f5f9",
 
       // Shadows
-      defaultShadow: isDark
-        ? "0 1px 2px rgba(0, 0, 0, 0.3)"
-        : designTokens.shadows.sm,
+      defaultShadow: isDark ? "0 1px 2px rgba(0, 0, 0, 0.3)" : designTokens.shadows.sm,
       dangerShadow: `0 2px 4px ${designTokens.colors.error}25`,
     },
 
@@ -140,9 +133,7 @@ export const themeConfigs = (isDark: boolean) => ({
       colorIcon: isDark ? "#94a3b8" : "#64748b",
       colorIconHover: isDark ? "#e2e8f0" : "#334155",
 
-      boxShadow: isDark
-        ? "0 1px 2px rgba(0, 0, 0, 0.3)"
-        : designTokens.shadows.sm,
+      boxShadow: isDark ? "0 1px 2px rgba(0, 0, 0, 0.3)" : designTokens.shadows.sm,
       activeShadow: `0 0 0 2px ${designTokens.colors.primary}33`,
     },
 
@@ -154,12 +145,8 @@ export const themeConfigs = (isDark: boolean) => ({
       colorTextHeading: isDark ? "#f1f5f9" : "#0f172a",
       colorText: isDark ? "#e2e8f0" : "#334155",
 
-      boxShadow: isDark
-        ? "0 1px 3px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3)"
-        : designTokens.shadows.md,
-      boxShadowHover: isDark
-        ? "0 4px 6px rgba(0, 0, 0, 0.6), 0 2px 4px rgba(0, 0, 0, 0.4)"
-        : designTokens.shadows.lg,
+      boxShadow: isDark ? "0 1px 3px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3)" : designTokens.shadows.md,
+      boxShadowHover: isDark ? "0 4px 6px rgba(0, 0, 0, 0.6), 0 2px 4px rgba(0, 0, 0, 0.4)" : designTokens.shadows.lg,
 
       headerBg: isDark ? "#0f172a" : "#f8fafc",
       headerHeight: 56,

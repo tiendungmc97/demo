@@ -49,14 +49,17 @@ export default async function LocaleLayout({
   // side is the easiest way to get started
   const messages = await getMessages({ locale: locale as Language });
 
-  const cookieStore = await cookies()
-  const theme = cookieStore.get(SessionStorageKeys.THEME)?.value as Theme || Theme.LIGHT;
+  const cookieStore = await cookies();
+  const theme = (cookieStore.get(SessionStorageKeys.THEME)?.value as Theme) || Theme.LIGHT;
 
   return (
-    <html lang={locale} className={theme} style={{colorScheme: theme}} suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+    <html
+      lang={locale}
+      className={theme}
+      style={{ colorScheme: theme }}
+      suppressHydrationWarning
+    >
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <ReduxProvider>
           <ReactQueryProvider>
             <NextIntlClientProvider messages={messages}>

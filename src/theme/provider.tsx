@@ -10,7 +10,7 @@ import { useLayoutEffect, useMemo, useState } from "react";
 import { themeConfigs } from "./config";
 import { Theme } from "./types";
 
-function AntdConfigProvider({ children, initTheme }: { children: React.ReactNode, initTheme: Theme }) {
+function AntdConfigProvider({ children, initTheme }: { children: React.ReactNode; initTheme: Theme }) {
   const { theme: currentTheme } = useTheme();
   const [theme, setTheme] = useState<Theme>(initTheme);
 
@@ -25,25 +25,25 @@ function AntdConfigProvider({ children, initTheme }: { children: React.ReactNode
       token: themeConfigs(isDark).token,
       components: themeConfigs(isDark).components,
     }),
-    [isDark]
+    [isDark],
   );
   return <ConfigProvider theme={antdTheme}>{children}</ConfigProvider>;
 }
 
-function AntdProviders({ children, theme }: { children: React.ReactNode, theme: Theme }) {
+function AntdProviders({ children, theme }: { children: React.ReactNode; theme: Theme }) {
   return (
     <ThemeProvider
       enableSystem
       storageKey="theme"
       defaultTheme="system"
-      attribute="class"   
+      attribute="class"
     >
       <AntdConfigProvider initTheme={theme}>{children}</AntdConfigProvider>
     </ThemeProvider>
   );
 }
 
-export function ThemeProviders({ children, theme }: { children: React.ReactNode, theme: Theme }) {
+export function ThemeProviders({ children, theme }: { children: React.ReactNode; theme: Theme }) {
   return (
     <AntdRegistry>
       <AntdProviders theme={theme}>{children}</AntdProviders>

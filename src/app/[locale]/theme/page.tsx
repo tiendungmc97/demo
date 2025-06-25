@@ -23,8 +23,10 @@ function Theme() {
     {
       key: "1",
       label: "Tab 1",
+
       children: "Content of Tab Pane 1",
     },
+
     {
       key: "2",
       label: "Tab 2",
@@ -33,25 +35,33 @@ function Theme() {
     {
       key: "3",
       label: "Tab 3",
+
       children: "Content of Tab Pane 3",
     },
   ];
   return (
     <div>
-      <Tabs defaultActiveKey="1" items={items} onChange={onChange} />
-      <Switch checked={!loading} onChange={(checked) => setLoading(!checked)} />
+      <Tabs
+        defaultActiveKey="1"
+        items={items}
+        onChange={onChange}
+      />
+      <Switch
+        checked={!loading}
+        onChange={(checked) => setLoading(!checked)}
+      />
       <Card loading={loading}>
         <p>
-          This is a card that will be in loading state when the switch is
-          checked. You can toggle the loading state by clicking the switch.
+          This is a card that will be in loading state when the switch is checked. You can toggle the loading state by
+          clicking the switch.
         </p>
-        <p>
-          When the switch is checked, the card will show a loading spinner and
-          disable interactions.
-        </p>
+        <p>When the switch is checked, the card will show a loading spinner and disable interactions. Test</p>
         <Input></Input>
       </Card>
-      <Button type="primary" onClick={showModal}>
+      <Button
+        type="primary"
+        onClick={showModal}
+      >
         Open Modal
       </Button>
       <Modal

@@ -7,7 +7,7 @@ type SetValue<T> = T | ((val: T) => T);
 type LocalStorageKey = (typeof LocalStorageKeys)[keyof typeof LocalStorageKeys];
 export function useLocalStorage<T>(
   key: LocalStorageKey,
-  initialValue: T
+  initialValue: T,
 ): [T, (value: SetValue<T>) => void, () => void] {
   // Get from local storage then parse stored json or return initialValue
   const [storedValue, setStoredValue] = useState<T>(() => {
@@ -27,8 +27,7 @@ export function useLocalStorage<T>(
   const setValue = (value: SetValue<T>) => {
     try {
       // Allow value to be a function so we have the same API as useState
-      const valueToStore =
-        value instanceof Function ? value(storedValue) : value;
+      const valueToStore = value instanceof Function ? value(storedValue) : value;
       setStoredValue(valueToStore);
 
       if (typeof window !== "undefined") {

@@ -2,8 +2,7 @@ import { Form, FormItemProps, Radio, RadioGroupProps } from "antd";
 import { ReactNode } from "react";
 import { Control, Controller, FieldValues, Path } from "react-hook-form";
 
-interface IRadioFieldProps<TFormValues extends FieldValues>
-  extends RadioGroupProps {
+interface IRadioFieldProps<TFormValues extends FieldValues> extends RadioGroupProps {
   control: Control<TFormValues>;
   name: Path<TFormValues>;
   label: ReactNode;

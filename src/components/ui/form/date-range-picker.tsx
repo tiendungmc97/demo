@@ -8,8 +8,7 @@ dayjs.extend(utc);
 
 const { RangePicker } = DatePicker;
 
-interface IDateRangePickerFieldProps<TFormValues extends FieldValues>
-  extends Omit<RangePickerProps, "name"> {
+interface IDateRangePickerFieldProps<TFormValues extends FieldValues> extends Omit<RangePickerProps, "name"> {
   control: Control<TFormValues>;
   name: keyof TFormValues;
   label?: string;
@@ -39,19 +38,11 @@ export const DateRangePickerField = <TFormValues extends FieldValues>({
         <RangePicker
           data-rhf={name}
           className="w-full"
-          value={
-            value
-              ? ([dayjs(value[0]), dayjs(value[1])] as [Dayjs, Dayjs])
-              : null
-          }
+          value={value ? ([dayjs(value[0]), dayjs(value[1])] as [Dayjs, Dayjs]) : null}
           onChange={(dates) => {
             const utcDates = dates
               ? (dates as [Dayjs, Dayjs]).map((date, index) =>
-                  date
-                    ? index === 0
-                      ? date.startOf("day").utc().format()
-                      : date.endOf("day").utc().format()
-                    : null
+                  date ? (index === 0 ? date.startOf("day").utc().format() : date.endOf("day").utc().format()) : null,
                 )
               : null;
             onChange(utcDates);

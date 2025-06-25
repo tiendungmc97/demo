@@ -2,8 +2,7 @@ import { Form, FormItemProps, Input, InputProps } from "antd";
 import { ReactNode } from "react";
 import { Control, Controller, FieldValues } from "react-hook-form";
 
-interface IInputFieldProps<TFormValues extends FieldValues>
-  extends Omit<InputProps, "name"> {
+interface IInputFieldProps<TFormValues extends FieldValues> extends Omit<InputProps, "name"> {
   control: Control<TFormValues>;
   name: keyof TFormValues;
   label: ReactNode;
@@ -31,7 +30,12 @@ export const InputTextField = <TFormValues extends FieldValues>({
           layout={layout}
           required={required}
         >
-          <Input data-rhf={name} onChange={onChange} value={value} {...props} />
+          <Input
+            data-rhf={name}
+            onChange={onChange}
+            value={value}
+            {...props}
+          />
         </Form.Item>
       )}
     />

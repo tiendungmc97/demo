@@ -6,9 +6,8 @@ import { User, userService } from "@/services/service/user-service";
 export function useUserProfile(id: number, options?: QueryOptions<User>) {
   return useQuery({
     queryKey: queryKeys.users.profile(id),
-    queryFn: () => userService.getUserProfile(id).then(res => res.data),
+    queryFn: () => userService.getUserProfile(id).then((res) => res.data),
     enabled: !!id,
     ...options,
-  })
+  });
 }
-

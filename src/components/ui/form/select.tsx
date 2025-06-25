@@ -2,8 +2,7 @@ import { Form, FormItemProps, Select, SelectProps } from "antd";
 import { ReactNode } from "react";
 import { Control, Controller, FieldValues, Path } from "react-hook-form";
 
-interface ISelectInputFieldProps<TFormValues extends FieldValues>
-  extends SelectProps {
+interface ISelectInputFieldProps<TFormValues extends FieldValues> extends SelectProps {
   control: Control<TFormValues>;
   name: Path<TFormValues>;
   label: ReactNode;
@@ -39,9 +38,7 @@ export const SelectField = <TFormValues extends FieldValues>({
             onChange(selectedValue);
           }}
           {...props}
-          filterOption={(input, option) =>
-            String(option?.label).toLowerCase().includes(input.toLowerCase())
-          }
+          filterOption={(input, option) => String(option?.label).toLowerCase().includes(input.toLowerCase())}
           options={options}
         />
       </Form.Item>

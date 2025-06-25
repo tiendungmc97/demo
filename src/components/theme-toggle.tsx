@@ -14,7 +14,10 @@ export function ThemeToggle() {
 
   if (!mounted) {
     return (
-      <Button shape="circle" className="flex items-center justify-center" />
+      <Button
+        shape="circle"
+        className="flex items-center justify-center"
+      />
     );
   }
   const changeTheme = () => {

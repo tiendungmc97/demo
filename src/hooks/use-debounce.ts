@@ -19,10 +19,7 @@ export function useDebounce<T>(value: T, delay: number): T {
 }
 
 // Alternative hook that returns a debounced callback function
-export function useDebouncedCallback<T extends (...args: any[]) => any>(
-  callback: T,
-  delay: number
-): T {
+export function useDebouncedCallback<T extends (...args: any[]) => any>(callback: T, delay: number): T {
   const [debounceTimer, setDebounceTimer] = useState<NodeJS.Timeout>();
 
   const debouncedCallback = ((...args: Parameters<T>) => {

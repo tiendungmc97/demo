@@ -26,6 +26,5 @@ const systemSlice = createSlice({
   },
 });
 
-export const { setLoadingGlobal, setErrorGlobal, clearErrorGlobal } =
-  systemSlice.actions;
-export default systemSlice.reducer
+export const { setLoadingGlobal, setErrorGlobal, clearErrorGlobal } = systemSlice.actions;
+export default systemSlice.reducer;

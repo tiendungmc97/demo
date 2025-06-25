@@ -2,8 +2,7 @@ import { Form, FormItemProps, Input } from "antd";
 import { TextAreaProps } from "antd/es/input/TextArea";
 import { Control, Controller, FieldValues } from "react-hook-form";
 
-interface ITextAreaFieldProps<TFormValues extends FieldValues>
-  extends Omit<TextAreaProps, "name"> {
+interface ITextAreaFieldProps<TFormValues extends FieldValues> extends Omit<TextAreaProps, "name"> {
   control: Control<TFormValues>;
   name: keyof TFormValues;
   label: string;

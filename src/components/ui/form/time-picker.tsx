@@ -2,8 +2,7 @@ import { Form, TimePicker, TimePickerProps } from "antd";
 import dayjs from "dayjs";
 import { Controller } from "react-hook-form";
 
-interface ITimePickerFieldProps<TFormValues>
-  extends Omit<TimePickerProps, "name" | "control"> {
+interface ITimePickerFieldProps<TFormValues> extends Omit<TimePickerProps, "name" | "control"> {
   name: keyof TFormValues;
   control: any;
 }
@@ -17,7 +16,10 @@ export const TimePickerField = <TFormValues extends Record<string, any>>({
     name={name as string}
     control={control}
     render={({ field: { onChange, value }, fieldState: { error } }) => (
-      <Form.Item validateStatus={error ? "error" : ""} help={error?.message}>
+      <Form.Item
+        validateStatus={error ? "error" : ""}
+        help={error?.message}
+      >
         <TimePicker
           value={value ? dayjs(value) : null}
           data-rhf={name}

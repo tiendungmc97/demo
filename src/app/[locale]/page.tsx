@@ -21,11 +21,9 @@ export default function HomePage() {
   };
   return (
     <div className="space-y-8">
-      <div className="text-center space-y-4">
+      <div className="space-y-4 text-center">
         <h1 className="text-4xl font-bold tracking-tight">{t("title")}</h1>
-        <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-          {t("description")}
-        </p>
+        <p className="text-muted-foreground mx-auto max-w-2xl text-xl">{t("description")}</p>
       </div>
       <form onSubmit={handleSubmit(submit)}>
         <InputTextField
@@ -37,7 +35,11 @@ export default function HomePage() {
           allowClear
           required
         />
-        <InputTextField control={control} name="email" label="Email" />
+        <InputTextField
+          control={control}
+          name="email"
+          label="Email"
+        />
         <SelectField
           control={control}
           name="username"
@@ -51,7 +53,7 @@ export default function HomePage() {
         <Button htmlType="submit">Submit</Button>
       </form>
 
-      <div className="flex justify-center gap-4 ">
+      <div className="flex justify-center gap-4">
         <button>
           <Link href="/about">{t("getStarted")}</Link>
         </button>

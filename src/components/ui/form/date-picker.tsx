@@ -4,8 +4,7 @@ import utc from "dayjs/plugin/utc";
 import dayjs from "dayjs";
 
 dayjs.extend(utc);
-interface IDatePickerFieldProps<TFormValues extends FieldValues>
-  extends Omit<DatePickerProps, "name"> {
+interface IDatePickerFieldProps<TFormValues extends FieldValues> extends Omit<DatePickerProps, "name"> {
   control: Control<TFormValues>;
   name: keyof TFormValues;
   label?: string;

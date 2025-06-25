@@ -6,15 +6,21 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lint:fix": "eslint src --fix && pnpm format",
+    "lint:strict": "eslint src",
+    "format": "prettier --plugins=prettier-plugin-tailwindcss -w .",
+    "format:check": "prettier --plugins=prettier-plugin-tailwindcss -c .",
+    "postbuild": "next-sitemap --config next-sitemap.config.js",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@ant-design/nextjs-registry": "^1.0.2",
     "@ant-design/v5-patch-for-react-19": "^1.0.3",
     "@hookform/resolvers": "^5.1.1",
+    "@tanstack/react-query-devtools": "^5.81.2",
     "@reduxjs/toolkit": "^2.8.2",
     "@tanstack/react-query": "^5.80.7",
-    "@tanstack/react-query-devtools": "^5.80.7",
     "@types/react-redux": "^7.1.34",
     "antd": "^5.26.1",
     "axios": "^1.10.0",
@@ -34,8 +40,22 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "15.3.3",
+    "eslint-config-next": "^15.3.3",
+    "eslint-config-prettier": "^10.1.5",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.2",
+    "prettier": "^3.6.0",
+    "prettier-plugin-tailwindcss": "^0.6.13",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx}": [
+      "eslint",
+      "prettier --write"
+    ],
+    "**/*.{json,css,scss,md,webmanifest}": [
+      "prettier --write"
+    ]
   }
 }

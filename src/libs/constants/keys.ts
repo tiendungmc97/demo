@@ -1,7 +1,7 @@
 export const LocalStorageKeys = {
-    USER: "user",
+  USER: "user",
 } as const;
 
 export const SessionStorageKeys = {
-    THEME: "theme",
+  THEME: "theme",
 } as const;

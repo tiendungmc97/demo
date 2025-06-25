@@ -15,9 +15,7 @@ export function LanguageSwitcher() {
     { code: Language.VI, name: t("vietnamese") },
   ];
 
-  const handleLanguageChange = (
-    event: React.ChangeEvent<HTMLSelectElement>
-  ) => {
+  const handleLanguageChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const newLocale = event.target.value as Language;
     router.replace(pathname, { locale: newLocale });
   };
