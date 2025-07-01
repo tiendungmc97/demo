@@ -15,7 +15,8 @@
     "home": "Home",
     "about": "About",
     "contact": "Contact",
-    "theme": "Theme"
+    "theme": "Theme",
+    "signin": "Sign In"
   },
   "LanguageSwitcher": {
     "switchLanguage": "Switch Language",

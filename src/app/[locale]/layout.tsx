@@ -16,6 +16,7 @@ import { getMessages } from "next-intl/server";
 import { cookies } from "next/headers";
 import { Theme } from "@/theme/types";
 import { SessionStorageKeys } from "@/libs/constants/keys";
+import { SessionProviders } from "@/components/provider/session-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -64,8 +65,10 @@ export default async function LocaleLayout({
           <ReactQueryProvider>
             <NextIntlClientProvider messages={messages}>
               <ThemeProviders theme={theme}>
-                <Navigation />
-                <main className="container mx-auto px-4 py-8">{children}</main>
+                <SessionProviders>
+                  <Navigation />
+                  <main className="container mx-auto px-4 py-8">{children}</main>
+                </SessionProviders>
               </ThemeProviders>
             </NextIntlClientProvider>
           </ReactQueryProvider>

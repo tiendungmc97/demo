@@ -3,7 +3,7 @@
 import { LoadingOverlay } from "@/components/ui/loading-overlay";
 import { login, logout } from "@/redux/slice/user-slice";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
-import { useUserProfile } from "@/services/react-query/hooks/use-users";
+import { useUserProfile } from "@/services/hooks/use-auth";
 import { Button } from "antd";
 import { useTranslations } from "next-intl";
 
@@ -20,21 +20,18 @@ export default function AboutPage() {
     dispatch(login(userInfo));
   };
   const logoutUser = () => {
-    const userInfo = {
-      id: "",
-      name: "",
-      email: "",
-    };
     dispatch(logout());
   };
-  const { data } = useUserProfile(1);
+  const { data, refetch, isLoading, isRefetching } = useUserProfile();
+  console.log("data :>> ", data);
   return (
     <LoadingOverlay
-      isLoading={true}
+      isLoading={isLoading || isRefetching}
       message="Loading..."
     >
       <div className="space-y-8">
         <div className="space-y-4 text-center">
+          <Button onClick={() => refetch()}>Refetch</Button>
           <button onClick={saveUser}>Save User</button>
           <button onClick={logoutUser}>logout</button>
           <h1 className="bg-red mb-2 rounded-2xl border-2 text-4xl font-bold tracking-tight text-gray-500">
@@ -51,6 +48,7 @@ export default function AboutPage() {
           2323
         </Button>
         <Button color="red">2323</Button>
+        <p>{data?.email}</p>
       </div>
     </LoadingOverlay>
   );

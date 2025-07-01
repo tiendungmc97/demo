@@ -5,10 +5,6 @@ export const API_ENDPOINTS = {
     REGISTER: "/auth/register",
     REFRESH_TOKEN: "/auth/refresh-token",
     FORGOT_PASSWORD: "/auth/forgot-password",
-  },
-  USERS: {
-    LIST: "/users",
-    DETAIL: (id: number) => `/users/${id}`,
-    PROFILE: (id: number) => `/users/${id}/profile`,
+    PROFILE: "/auth/profile",
   },
 } as const;

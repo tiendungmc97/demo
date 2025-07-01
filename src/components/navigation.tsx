@@ -1,17 +1,20 @@
 "use client";
 
 import { Link } from "@/i18n/navigation";
+import { Button } from "antd";
+import { signOut, useSession } from "next-auth/react";
 import { useTranslations } from "next-intl";
 import { LanguageSwitcher } from "./language-switcher";
 import { ThemeToggle } from "./theme-toggle";
 
 export function Navigation() {
   const t = useTranslations("Navigation");
-
+  const user = useSession();
   const navItems = [
     { href: "/", label: t("home") },
     { href: "/about", label: t("about") },
     { href: "/theme", label: t("theme") },
+    { href: "/signin", label: t("signin") },
   ];
 
   return (
@@ -41,6 +44,16 @@ export function Navigation() {
             <ThemeToggle />
             <LanguageSwitcher />
           </div>
+          {user.status === "authenticated" ? (
+            <Button
+              className="text-sm text-blue-500 hover:underline"
+              onClick={() => user.status === "authenticated" && signOut({ callbackUrl: "/signin", redirect: true })}
+            >
+              Sign out
+            </Button>
+          ) : (
+            <Button className="text-sm text-blue-500 hover:underline">Sign in</Button>
+          )}
         </div>
       </div>
     </nav>

@@ -1,8 +1,9 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from "axios";
+import { getSession } from "next-auth/react";
 
 // Base API configuration
 const API_CONFIG = {
-  baseURL: process.env.NEXT_PUBLIC_API_URL || "https://jsonplaceholder.typicode.com",
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
   timeout: 10000,
   headers: {
     "Content-Type": "application/json",
@@ -13,14 +14,12 @@ export const apiClient: AxiosInstance = axios.create(API_CONFIG);
 
 // Request interceptor for adding auth tokens, logging, etc.
 apiClient.interceptors.request.use(
-  (config: InternalAxiosRequestConfig) => {
-    const token = getAuthToken();
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
+  async (config: InternalAxiosRequestConfig) => {
+    const token = await getSession();
+    const accessToken = token?.user?.accessToken;
+    if (accessToken) {
+      config.headers.Authorization = `Bearer ${accessToken}`;
     }
-
-    config.headers["X-Request-ID"] = generateRequestId();
-
     if (process.env.NEXT_PUBLIC_APP_ENV === "development") {
       console.log(`🚀 API Request: ${config.method?.toUpperCase()} ${config.url}`, {
         data: config.data,
@@ -58,27 +57,9 @@ apiClient.interceptors.response.use(
         data: error.response?.data,
       });
     }
-
-    // Handle specific error cases
-    if (error.response?.status === 401) {
-      handleUnauthorized();
-    } else if (error.response?.status === 403) {
-      handleForbidden();
-    }
-
     return Promise.reject(apiError);
   },
 );
-
-// Utility functions
-function getAuthToken(): string | null {
-  if (typeof window === "undefined") return null;
-  return localStorage.getItem("auth_token") || sessionStorage.getItem("auth_token");
-}
-
-function generateRequestId(): string {
-  return `req_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-}
 
 function handleApiError(error: AxiosError) {
   const status = error.response?.status || 0;
@@ -91,22 +72,6 @@ function handleApiError(error: AxiosError) {
     details: data?.details,
   };
 }
-
-function handleUnauthorized() {
-  // Clear auth tokens
-  if (typeof window !== "undefined") {
-    localStorage.removeItem("auth_token");
-    sessionStorage.removeItem("auth_token");
-    // Redirect to login or show auth modal
-    window.location.href = "/login";
-  }
-}
-
-function handleForbidden() {
-  // Handle forbidden access
-  console.warn("Access forbidden - insufficient permissions");
-}
-
 // Create specialized API clients for different services
 export const createServiceClient = (baseURL?: string, config?: AxiosRequestConfig): AxiosInstance => {
   return axios.create({
