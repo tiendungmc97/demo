@@ -1,5 +1,5 @@
 @import "tailwindcss";
-
+@import "./custom-antd.css";
 /* CSS Custom Properties for consistent theming */
 :root {
   /* Colors */
@@ -34,7 +34,7 @@
   --bg-base: #ffffff;
   --bg-container: #ffffff;
   --bg-elevated: #ffffff;
-  --bg-layout: #f8fafc;
+  --bg-layout: #f2f5f8;
   --text-base: #0f172a;
   --text-primary: #334155;
   --text-secondary: #64748b;

@@ -1,0 +1,24 @@
+.ant-form-item-required {
+  flex-direction: row-reverse;
+}
+
+.ant-form-item-required::before {
+  margin-left: 4px;
+}
+
+.ant-form-item-required::after {
+  width: 0;
+  margin: 0 !important;
+}
+
+.ant-carousel .slick-next,
+.ant-carousel .slick-prev {
+  bottom: 4px !important;
+  top: auto !important;
+}
+.ant-carousel .slick-next {
+  inset-inline-end: 130px !important;
+}
+.ant-carousel .slick-prev {
+  inset-inline-start: 130px !important;
+}

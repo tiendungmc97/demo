@@ -2,11 +2,13 @@ import { authService } from "@/services/service/auth-service";
 import NextAuth, { User } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
+import { use } from "react";
 
 if (!process.env.NEXTAUTH_SECRET) {
   throw new Error("NEXTAUTH_SECRET not set");
 }
 const EXPIRED_TIME = Date.now() + 1000 * 60 * 60;
+const REQUIRE_2FA = true;
 async function refreshAccessToken(token: any) {
   try {
     const res = await authService.refreshToken(token.refreshToken);
@@ -26,6 +28,7 @@ async function refreshAccessToken(token: any) {
   }
 }
 const handler = NextAuth({
+  secret: process.env.NEXTAUTH_SECRET,
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -49,6 +52,7 @@ const handler = NextAuth({
             accessToken: res.data.access_token,
             refreshToken: res.data.refresh_token,
             accessTokenExpires: EXPIRED_TIME,
+            require2FA: REQUIRE_2FA,
           };
           return user;
         } catch (err) {
@@ -59,17 +63,23 @@ const handler = NextAuth({
     }),
   ],
   pages: {
-    signIn: "/signin",
-    signOut: "/signout",
-    error: "/error",
+    signIn: "/signin/1212",
+    error: "/signin",
+    verifyRequest: "/verify-2fa",
   },
   callbacks: {
     async signIn({ user, account, profile }) {
       try {
+        if (account?.provider === "google") {
+          console.log("user :>> ", user);
+          console.log("account :>> ", account);
+          console.log("profile :>> ", profile);
+        }
         if (account?.provider === "credentials") {
-          account.access_token = user.accessToken;
-          account.refresh_token = user.refreshToken;
+          account.accessToken = user.accessToken;
+          account.refreshToken = user.refreshToken;
           account.accessTokenExpires = user.accessTokenExpires;
+          account.require2FA = user.require2FA;
         }
         return true;
       } catch (error) {
@@ -82,6 +92,7 @@ const handler = NextAuth({
         token.accessToken = user!.accessToken;
         token.refreshToken = user!.refreshToken;
         token.accessTokenExpires = user!.accessTokenExpires;
+        token.require2FA = user!.require2FA;
       }
       if (user?.accessTokenExpires && Date.now() < user?.accessTokenExpires) {
         return token;
@@ -95,6 +106,7 @@ const handler = NextAuth({
           ...session.user,
           accessToken: token.accessToken,
           refreshToken: token.refreshToken,
+          accessTokenExpires: token.accessTokenExpires,
         } as User;
       }
       return session;

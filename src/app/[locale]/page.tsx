@@ -1,11 +1,11 @@
 "use client";
 
-import { SignInForm } from "./(auth)/signin/signin-form";
+import { LoginForm } from "./(auth)/login/login-form";
 
 export default function HomePage() {
   return (
     <div className="space-y-8">
-      <SignInForm />
+      <LoginForm />
     </div>
   );
 }

@@ -22,5 +22,32 @@
     "switchLanguage": "Chuyển đổi ngôn ngữ",
     "english": "English",
     "vietnamese": "Tiếng Việt"
+  },
+  "AuthPage": {
+    "login": "Đăng nhập",
+    "email": "Địa chỉ Email",
+    "password": "Mật khẩu",
+    "confirmPassword": "Xác nhận mật khẩu",
+    "fullName": "Họ và tên",
+    "referralCode": "Mã giới thiệu",
+    "forgotPassword": "Quên mật khẩu?",
+    "emailPlaceholder": "Nhập email của bạn",
+    "passwordPlaceholder": "Nhập mật khẩu của bạn",
+    "confirmPasswordPlaceholder": "Nhập lại mật khẩu",
+    "fullNamePlaceholder": "Nhập họ và tên của bạn",
+    "referralCodePlaceholder": "Nhập mã giới thiệu của bạn",
+    "loginError": "Email hoặc mật khẩu không hợp lệ. Vui lòng thử lại.",
+    "dontHaveAccount": "Chưa có tài khoản?",
+    "forgetPassword": "Quên mật khẩu?",
+    "register": "Đăng ký",
+    "registerSuccess": "Đăng ký thành công! Vui lòng đăng nhập.",
+    "registerError": "Đăng ký không thành công. Vui lòng thử lại.",
+    "errors": {
+      "invalidEmail": "Địa chỉ email không hợp lệ",
+      "fullNameRequired": "Họ và tên là bắt buộc",
+      "passwordMinLength": "Mật khẩu phải có ít nhất 6 ký tự",
+      "confirmPasswordMinLength": "Xác nhận mật khẩu phải có ít nhất 6 ký tự",
+      "passwordsDontMatch": "Mật khẩu không khớp"
+    }
   }
 }

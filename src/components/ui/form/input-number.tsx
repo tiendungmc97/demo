@@ -1,9 +1,8 @@
 import { Form, FormItemProps, InputNumber, InputNumberProps } from "antd";
 import { ReactNode } from "react";
-import { Control, Controller, FieldValues, Path } from "react-hook-form";
+import { Controller, FieldValues, Path, useFormContext } from "react-hook-form";
 
 interface IInputNumberFieldProps<TFormValues extends FieldValues> extends Omit<InputNumberProps, "name"> {
-  control: Control<TFormValues>;
   name: Path<TFormValues>;
   label: ReactNode;
   required?: boolean;
@@ -11,13 +10,13 @@ interface IInputNumberFieldProps<TFormValues extends FieldValues> extends Omit<I
 }
 
 export const InputNumberField = <TFormValues extends FieldValues>({
-  control,
   name,
   label,
   required = false,
   layout = "vertical",
   ...props
 }: IInputNumberFieldProps<TFormValues>) => {
+  const { control } = useFormContext<TFormValues>();
   return (
     <Controller
       name={name}

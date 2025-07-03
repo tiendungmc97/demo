@@ -12,8 +12,6 @@ export function Navigation() {
   const user = useSession();
   const navItems = [
     { href: "/", label: t("home") },
-    { href: "/about", label: t("about") },
-    { href: "/theme", label: t("theme") },
     { href: "/signin", label: t("signin") },
   ];
 
@@ -41,19 +39,9 @@ export function Navigation() {
             </div>
           </div>
           <div className="flex items-center space-x-4">
-            <ThemeToggle />
+            {/* <ThemeToggle /> */}
             <LanguageSwitcher />
           </div>
-          {user.status === "authenticated" ? (
-            <Button
-              className="text-sm text-blue-500 hover:underline"
-              onClick={() => user.status === "authenticated" && signOut({ callbackUrl: "/signin", redirect: true })}
-            >
-              Sign out
-            </Button>
-          ) : (
-            <Button className="text-sm text-blue-500 hover:underline">Sign in</Button>
-          )}
         </div>
       </div>
     </nav>

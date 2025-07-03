@@ -1,21 +1,20 @@
 import { Form, FormItemProps, Input } from "antd";
 import { TextAreaProps } from "antd/es/input/TextArea";
-import { Control, Controller, FieldValues } from "react-hook-form";
+import { Controller, FieldValues, useFormContext } from "react-hook-form";
 
 interface ITextAreaFieldProps<TFormValues extends FieldValues> extends Omit<TextAreaProps, "name"> {
-  control: Control<TFormValues>;
   name: keyof TFormValues;
   label: string;
   layout?: FormItemProps["layout"];
 }
 
 export const InputTextAreaField = <TFormValues extends FieldValues>({
-  control,
   name,
   layout = "vertical",
   label,
   ...props
 }: ITextAreaFieldProps<TFormValues>) => {
+  const { control, setValue } = useFormContext<TFormValues>();
   return (
     <Controller
       name={name as any}

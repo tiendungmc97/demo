@@ -1,9 +1,8 @@
 import { Form, FormItemProps, Input, InputProps } from "antd";
 import { ReactNode } from "react";
-import { Control, Controller, FieldValues } from "react-hook-form";
+import { Controller, FieldValues, useFormContext } from "react-hook-form";
 
 interface IInputFieldProps<TFormValues extends FieldValues> extends Omit<InputProps, "name"> {
-  control: Control<TFormValues>;
   name: keyof TFormValues;
   label: ReactNode;
   required?: boolean;
@@ -11,13 +10,13 @@ interface IInputFieldProps<TFormValues extends FieldValues> extends Omit<InputPr
 }
 
 export const InputPasswordField = <TFormValues extends FieldValues>({
-  control,
   name,
   layout = "vertical",
   label,
   required = false,
   ...props
 }: IInputFieldProps<TFormValues>) => {
+  const { control, setValue } = useFormContext<TFormValues>();
   return (
     <Controller
       name={name as any}
@@ -34,6 +33,10 @@ export const InputPasswordField = <TFormValues extends FieldValues>({
             data-rhf={name}
             autoComplete="off"
             onChange={onChange}
+            onBlur={() => {
+              const trimmed = value?.trim();
+              setValue(name as any, trimmed, { shouldValidate: true });
+            }}
             value={value}
             {...props}
           />

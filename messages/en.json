@@ -22,5 +22,33 @@
     "switchLanguage": "Switch Language",
     "english": "English",
     "vietnamese": "Tiếng Việt"
+  },
+  "AuthPage": {
+    "login": "Login",
+    "email": "Email Address",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "fullName": "Full Name",
+    "forgotPassword": "Forgot Password?",
+    "referralCode": "Referral Code",
+    "emailPlaceholder": "Enter your email",
+    "passwordPlaceholder": "Enter your password",
+    "confirmPasswordPlaceholder": "Enter confirm your password",
+    "fullNamePlaceholder": "Enter your full name",
+    "referralCodePlaceholder": "Enter your referral code",
+    "loginError": "Invalid email or password. Please try again.",
+    "dontHaveAccount": "Don't have an account?",
+    "forgetPassword": "Forget Password?",
+    "register": "Register",
+    "registerSuccess": "Registration successful! Please log in.",
+    "registerError": "Registration failed. Please try again.",
+    "errors": {
+      "invalidEmail": "Invalid email address",
+      "fullNameRequired": "Full name is required",
+      "passwordMinLength": "Password must be at least 6 characters",
+      "confirmPasswordMinLength": "Confirm password must be at least 6 characters",
+      "passwordsDontMatch": "Passwords don't match",
+      "usernameMinLength": "Username must be at least 3 characters"
+    }
   }
 }

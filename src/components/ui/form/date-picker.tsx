@@ -1,5 +1,5 @@
 import { DatePicker, DatePickerProps, Form, FormItemProps } from "antd";
-import { Control, Controller, FieldValues } from "react-hook-form";
+import { Control, Controller, FieldValues, useFormContext } from "react-hook-form";
 import utc from "dayjs/plugin/utc";
 import dayjs from "dayjs";
 
@@ -19,29 +19,32 @@ export const DatePickerField = <TFormValues extends FieldValues>({
   layout = "vertical",
   required = false,
   ...props
-}: IDatePickerFieldProps<TFormValues>) => (
-  <Controller
-    name={name as any}
-    control={control}
-    render={({ field: { onChange, value }, fieldState: { error } }) => (
-      <Form.Item
-        validateStatus={error ? "error" : ""}
-        help={error?.message}
-        label={label}
-        layout={layout}
-        required={required}
-      >
-        <DatePicker
-          data-rhf={name}
-          className="w-full"
-          value={value ? dayjs(value) : null}
-          onChange={(date) => {
-            const utcDate = date ? date.utc().format() : null;
-            onChange(utcDate);
-          }}
-          {...props}
-        />
-      </Form.Item>
-    )}
-  />
-);
+}: IDatePickerFieldProps<TFormValues>) => {
+  const { control: formControl } = useFormContext<TFormValues>();
+  return (
+    <Controller
+      name={name as any}
+      control={control}
+      render={({ field: { onChange, value }, fieldState: { error } }) => (
+        <Form.Item
+          validateStatus={error ? "error" : ""}
+          help={error?.message}
+          label={label}
+          layout={layout}
+          required={required}
+        >
+          <DatePicker
+            data-rhf={name}
+            className="w-full"
+            value={value ? dayjs(value) : null}
+            onChange={(date) => {
+              const utcDate = date ? date.utc().format() : null;
+              onChange(utcDate);
+            }}
+            {...props}
+          />
+        </Form.Item>
+      )}
+    />
+  );
+};
